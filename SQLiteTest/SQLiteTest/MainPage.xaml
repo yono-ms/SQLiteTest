@@ -4,10 +4,14 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             x:Class="SQLiteTest.MainPage">
+             x:Class="SQLiteTest.MainPage" x:Name="contentPage" Title="ホーム">
 
-    <StackLayout>
+    <StackLayout BindingContext="{x:Reference contentPage}">
         <!-- Place new controls here -->
+        <Label Text="Welcome to Xamarin.Forms!" 
+           HorizontalOptions="Center"
+           VerticalOptions="CenterAndExpand" />
+        <Button Text="検索画面" Command="{Binding Path=SearchCommand}"/>
         <Label Text="Welcome to Xamarin.Forms!" 
            HorizontalOptions="Center"
            VerticalOptions="CenterAndExpand" />

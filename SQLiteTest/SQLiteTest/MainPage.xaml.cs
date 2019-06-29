@@ -17,5 +17,25 @@ namespace SQLiteTest
         {
             InitializeComponent();
         }
+
+        public Command SearchCommand => new Command(async () =>
+        {
+            if (IsBusy) return;
+
+            try
+            {
+                IsBusy = true;
+                await Navigation.PushAsync(new SearchPage());
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine(ex.ToString());
+                await DisplayAlert("システムエラー", ex.Message, "OK");
+            }
+            finally
+            {
+                IsBusy = false;
+            }
+        });
     }
 }
