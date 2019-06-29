@@ -37,5 +37,24 @@ namespace SQLiteTest
                 IsBusy = false;
             }
         });
+        public Command DatabaseCommand => new Command(async () =>
+        {
+            if (IsBusy) return;
+
+            try
+            {
+                IsBusy = true;
+                await Navigation.PushAsync(new DatabasePage());
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine(ex.ToString());
+                await DisplayAlert("システムエラー", ex.Message, "OK");
+            }
+            finally
+            {
+                IsBusy = false;
+            }
+        });
     }
 }
