@@ -40,6 +40,7 @@ namespace SQLiteTest
                         }
                         else
                         {
+                            await App.Database.AddZipcodeItemsAsync(response.Results);
                             return (null, response.Results);
                         }
                     }
