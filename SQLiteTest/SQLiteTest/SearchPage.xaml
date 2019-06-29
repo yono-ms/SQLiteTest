@@ -32,7 +32,19 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-            <ActivityIndicator Grid.RowSpan="4" IsVisible="{Binding IsBusy, Mode=OneWay}" IsRunning="True" d:IsVisible="True" WidthRequest="100" HeightRequest="100"/>
+            <Grid Grid.RowSpan="4"  IsVisible="{Binding IsBusy, Mode=OneWay}" d:IsVisible="True">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <ActivityIndicator Grid.Row="1" Grid.Column="1" IsRunning="True"/>
+            </Grid>
         </Grid>
     </ContentPage.Content>
 </ContentPage>

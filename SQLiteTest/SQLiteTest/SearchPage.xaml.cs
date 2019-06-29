@@ -62,6 +62,8 @@ namespace SQLiteTest
             if (IsBusy) return;
             try
             {
+                IsBusy = true;
+
                 Items.Clear();
 
                 var result = await ZipcodeProvider.SearchAsync(Zipcode);
