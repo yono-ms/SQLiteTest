@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -10,7 +11,7 @@ namespace SQLiteTest
         {
             InitializeComponent();
 
-            MainPage = new MainPage();
+            MainPage = new NavigationPage(new MainPage());
         }
 
         protected override void OnStart()
@@ -26,6 +27,21 @@ namespace SQLiteTest
         protected override void OnResume()
         {
             // Handle when your app resumes
+        }
+
+        static SQLiteTestDatabase database;
+
+        public static SQLiteTestDatabase Database
+        {
+            get
+            {
+                if (database == null)
+                {
+                    database = new SQLiteTestDatabase(
+                      Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "SQLiteTest.db3"));
+                }
+                return database;
+            }
         }
     }
 }
