@@ -38,5 +38,9 @@ namespace SQLiteTest
                 await database.InsertOrReplaceAsync(item);
             }
         }
+        public async Task<List<ZipcodeItem>> GetZipcodeItemsAsync()
+        {
+            return await database.Table<ZipcodeItem>().ToListAsync();
+        }
     }
 }

@@ -11,7 +11,8 @@
         <Label Text="Welcome to Xamarin.Forms!" 
            HorizontalOptions="Center"
            VerticalOptions="CenterAndExpand" />
-        <Button Text="検索画面" Command="{Binding Path=SearchCommand}"/>
+        <Button Text="検索画面" Command="{Binding SearchCommand}"/>
+        <Button Text="データベース画面" Command="{Binding DatabaseCommand}"/>
         <Label Text="Welcome to Xamarin.Forms!" 
            HorizontalOptions="Center"
            VerticalOptions="CenterAndExpand" />
