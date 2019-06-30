@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using SQLite;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -6,6 +8,14 @@ namespace SQLiteTest
 {
     public class ZipcodeItem
     {
+        [PrimaryKey, AutoIncrement]
+        [JsonIgnore]
+        public long Id { get; set; }
+        [Indexed]
+        [JsonIgnore]
+        public long UpdateValue { get; set; }
+        [JsonIgnore]
+        public string UpdateText { get; set; }
         public string Zipcode { get; set; }
         public string Prefcode { get; set; }
         public string Address1 { get; set; }

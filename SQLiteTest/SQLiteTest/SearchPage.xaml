@@ -23,10 +23,11 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <StackLayout Orientation="Horizontal">
+                            <StackLayout Orientation="Horizontal" Spacing="8">
                                 <Label Text="{Binding Address1}"/>
                                 <Label Text="{Binding Address2}"/>
                                 <Label Text="{Binding Address3}"/>
+                                <Label Text="{Binding UpdateText}" FontSize="8" TextColor="Gray"/>
                             </StackLayout>
                         </ViewCell>
                     </DataTemplate>
