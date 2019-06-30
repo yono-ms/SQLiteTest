@@ -25,7 +25,7 @@ namespace SQLiteTest
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine(ex.ToString());
+                AppLog.Error(ex);
                 database.DropTableAsync<ZipcodeItem>().Wait();
                 database.CreateTableAsync<ZipcodeItem>().Wait();
             }
@@ -55,7 +55,7 @@ namespace SQLiteTest
                 item.UpdateValue = now.Ticks;
                 Thread.CurrentThread.CurrentCulture = originalCulture;
 
-                await database.InsertOrReplaceAsync(item);
+                await database.InsertAsync(item);
             }
         }
         public async Task<List<ZipcodeItem>> GetZipcodeItemsAsync()

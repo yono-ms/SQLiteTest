@@ -37,8 +37,13 @@ namespace SQLiteTest
             {
                 if (database == null)
                 {
+                    AppLog.Debug($"static変数databaseがnull");
                     database = new SQLiteTestDatabase(
                       Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "SQLiteTest.db3"));
+                }
+                else
+                {
+                    AppLog.Debug($"static変数databaseが存在している");
                 }
                 return database;
             }

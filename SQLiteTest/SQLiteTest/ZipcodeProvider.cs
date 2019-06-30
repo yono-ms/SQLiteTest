@@ -14,6 +14,7 @@ namespace SQLiteTest
             var isExist = await App.Database.IsExixtZipcodeAsync(zipcode);
             if (isExist)
             {
+                AppLog.Debug($"データベースにキャッシュ済み");
                 var zipcodeItems = await App.Database.GetZipcodeItemsAsync(zipcode);
                 return (null, zipcodeItems);
             }
@@ -30,29 +31,36 @@ namespace SQLiteTest
 
                 using (var httpClient = new HttpClient())
                 {
+                    AppLog.Debug($"--SEND-- {urlString}");
                     var json = await httpClient.GetStringAsync(urlString);
+                    AppLog.Debug($"--RECV-- {json}");
                     var response = JsonConvert.DeserializeObject<ZipcodeSearchResponse>(json);
+                    AppLog.Debug($"Status={response.Status}");
                     if (response.Status == 200)
                     {
+                        AppLog.Debug($"正常終了コード");
                         if (response.Results == null)
                         {
+                            AppLog.Debug($"検索結果が無い");
                             return ("登録されていません。", null);
                         }
                         else
                         {
+                            AppLog.Debug($"検索結果={response.Results.Count}件");
                             await App.Database.AddZipcodeItemsAsync(response.Results);
                             return (null, response.Results);
                         }
                     }
                     else
                     {
+                        AppLog.Debug($"異常終了コード");
                         return (response.Message, null);
                     }
                 }
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine(ex.ToString());
+                AppLog.Error(ex);
                 return (ex.Message, null);
             }
         }

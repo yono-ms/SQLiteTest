@@ -81,7 +81,7 @@ namespace SQLiteTest
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine(ex.ToString());
+                AppLog.Error(ex);
                 await DisplayAlert("システムエラー", ex.Message, "OK");
             }
             finally
