@@ -16,7 +16,9 @@ namespace SQLiteTest
         public long UpdateValue { get; set; }
         [JsonIgnore]
         public string UpdateText { get; set; }
+        [Indexed]
         public string Zipcode { get; set; }
+        [Indexed]
         public string Prefcode { get; set; }
         public string Address1 { get; set; }
         public string Address2 { get; set; }

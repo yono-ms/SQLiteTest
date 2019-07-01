@@ -50,5 +50,30 @@ namespace SQLiteTest
                 IsBusy = false;
             }
         });
+        public Command FilterCommand => new Command(async () =>
+        {
+            if (IsBusy) return;
+            try
+            {
+                IsBusy = true;
+
+                Items.Clear();
+
+                var results = await App.Database.GetZipcodeItemsRecentlyAsync();
+                foreach (var item in results)
+                {
+                    Items.Add(item);
+                }
+            }
+            catch (Exception ex)
+            {
+                AppLog.Error(ex);
+                await DisplayAlert("システムエラー", ex.Message, "OK");
+            }
+            finally
+            {
+                IsBusy = false;
+            }
+        });
     }
 }

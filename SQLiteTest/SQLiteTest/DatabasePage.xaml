@@ -11,7 +11,10 @@
                 <RowDefinition Height="auto"/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-            <Button Grid.Row="0" Text="表示" Command="{Binding SearchCommand}"/>
+            <StackLayout Orientation="Horizontal">
+                <Button Grid.Row="0" Text="表示" Command="{Binding SearchCommand}"/>
+                <Button Grid.Row="0" Text="最新" Command="{Binding FilterCommand}"/>
+            </StackLayout>
             <ListView Grid.Row="1" ItemsSource="{Binding Items}">
                 <ListView.Header>
                     <Label Text="検索結果"/>

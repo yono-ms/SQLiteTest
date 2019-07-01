@@ -90,3 +90,21 @@ SQL文不要となる。
 - API定義
 
 が1回で済む。
+
+Realmの場合はReqlmObject継承必須であることから
+APIと共用することができないため、
+この点ははSQLiteが優れている。
+
+Notifyとどちらを取るか悩ましい。
+
+## SQLに置き換えられるLinQの利用
+
+以下のIndexedは大小比較可能。
+
+- long
+  - 日付のTicksで範囲をフィルターできる
+
+以下のIndexedはソート可能。
+
+- string
+

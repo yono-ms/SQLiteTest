@@ -60,7 +60,12 @@ namespace SQLiteTest
         }
         public async Task<List<ZipcodeItem>> GetZipcodeItemsAsync()
         {
-            return await database.Table<ZipcodeItem>().ToListAsync();
+            return await database.Table<ZipcodeItem>().OrderBy(e => e.Prefcode).ThenBy(e => e.Zipcode).ToListAsync();
+        }
+        public async Task<List<ZipcodeItem>> GetZipcodeItemsRecentlyAsync()
+        {
+            var limit = DateTime.Now.AddHours(-1).Ticks;
+            return await database.Table<ZipcodeItem>().Where(e => e.UpdateValue > limit).ToListAsync();
         }
     }
 }
