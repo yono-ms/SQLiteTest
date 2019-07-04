@@ -67,5 +67,9 @@ namespace SQLiteTest
             var limit = DateTime.Now.AddHours(-1).Ticks;
             return await database.Table<ZipcodeItem>().Where(e => e.UpdateValue > limit).ToListAsync();
         }
+        public async Task<List<ZipcodeItem>> GetZipcodeItemsPrefcodeAsync(string prefcode)
+        {
+            return await database.Table<ZipcodeItem>().Where(e => e.Prefcode == prefcode).ToListAsync();
+        }
     }
 }

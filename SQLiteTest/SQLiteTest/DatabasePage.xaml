@@ -11,9 +11,11 @@
                 <RowDefinition Height="auto"/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-            <StackLayout Orientation="Horizontal">
-                <Button Grid.Row="0" Text="表示" Command="{Binding SearchCommand}"/>
-                <Button Grid.Row="0" Text="最新" Command="{Binding FilterCommand}"/>
+            <StackLayout Grid.Row="0" Orientation="Horizontal">
+                <Button Text="表示" Command="{Binding SearchCommand}"/>
+                <Button Text="最新" Command="{Binding FilterCommand}"/>
+                <Entry Placeholder="PrefCode" Text="{Binding Prefcode, Mode=TwoWay}"/>
+                <Button Text="都道府県コード" Command="{Binding PrefCommand}"/>
             </StackLayout>
             <ListView Grid.Row="1" ItemsSource="{Binding Items}">
                 <ListView.Header>
