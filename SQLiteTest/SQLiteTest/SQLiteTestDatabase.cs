@@ -71,5 +71,16 @@ namespace SQLiteTest
         {
             return await database.Table<ZipcodeItem>().Where(e => e.Prefcode == prefcode).ToListAsync();
         }
+
+        public async Task<int> DeleteZipcodeItemsAsync(List<ZipcodeItem> items)
+        {
+            int result = 0;
+            foreach (var item in items)
+            {
+                result += await database.DeleteAsync(item);
+            }
+
+            return result;
+        }
     }
 }

@@ -16,7 +16,18 @@ namespace SQLiteTest
             {
                 AppLog.Debug($"データベースにキャッシュ済み");
                 var zipcodeItems = await App.Database.GetZipcodeItemsAsync(zipcode);
-                return (null, zipcodeItems);
+                var limitValue = DateTime.Now.AddDays(-1).Ticks;
+                if(zipcodeItems[0].UpdateValue > limitValue)
+                {
+                    AppLog.Debug($"キャッシュが新しいので取りにいかない");
+                    return (null, zipcodeItems);
+                }
+                else
+                {
+                    AppLog.Debug($"キャッシュが古いので取り直し");
+                    int result = await App.Database.DeleteZipcodeItemsAsync(zipcodeItems);
+                    AppLog.Debug($"削除数 {result}");
+                }
             }
 
             try
